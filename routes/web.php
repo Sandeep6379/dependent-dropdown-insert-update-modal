@@ -19,6 +19,6 @@ Route::post('/', [StudentController::class,'addStudent']);
 
 Route::get('/get-plans/{id}', [StudentController::class,'getPlans']);
 
-Route::get('/edit-student/{id}', [StudentController::class,'editStudentLoad']);
+Route::get('/edit-student', [StudentController::class,'editStudentLoad'])->name('editStudentLoad');
 
 Route::post('/edit-student', [StudentController::class,'updateStudent'])->name('updateStudent');

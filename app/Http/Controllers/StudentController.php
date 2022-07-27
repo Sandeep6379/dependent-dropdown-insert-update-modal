@@ -36,13 +36,13 @@ class StudentController extends Controller
         return response()->json(['plans'=>$plans]);
     }
 
-    public function editStudentLoad($id)
+    public function editStudentLoad(Request $request)
     {
-        $student = Student::where('id',$id)->get();
+        $student = Student::where('id',$request->id)->get();
         $subjects = Subject::all();
         $plans = Plan::where('subject_id',$student[0]['subject_id'])->get();
 
-        return view('editStudent',['student'=>$student,'subjects'=>$subjects,'plans'=>$plans]);
+        return response()->json(['student'=>$student,'subjects'=>$subjects,'plans'=>$plans]);
     }
 
     public function updateStudent(Request $request)
@@ -53,6 +53,6 @@ class StudentController extends Controller
         $student->plan_id = $request->plan_id;
         $student->save();
 
-        return redirect('/');
+        return response()->json(['success'=>true,'msg'=>'Student updated successfully!']);
     }
 }
